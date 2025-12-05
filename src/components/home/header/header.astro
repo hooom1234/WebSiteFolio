@@ -6,13 +6,9 @@ import TypeEfect from "../header/typeEfect.jsx";
 <header class="relative h-screen bg-[#0b1121] overflow-hidden flex items-center justify-center">
   
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    
     <div class="absolute inset-0 opacity-20 animate-grid-move bg-grid-pattern"></div>
-
     <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[128px] mix-blend-screen animate-pulse-slow"></div>
-    
     <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-sky-500/20 rounded-full blur-[128px] mix-blend-screen animate-pulse-slow delay-1000"></div>
-    
     <div class="absolute inset-0 bg-[radial-gradient(transparent_0%,#0b1121_100%)]"></div>
   </div>
 
@@ -29,8 +25,7 @@ import TypeEfect from "../header/typeEfect.jsx";
         </div>
 
         <p class="text-base md:text-lg text-slate-400 max-w-lg font-light leading-relaxed">
-          I'm Tawan Pingma, a student who loves coding and learning new technologies.
-          Creating beautiful web experiences is my passion.
+          I'm Tawan Pingma, a student with a passion for coding. <br>My main focus is on Capture The Flag and Web Application development.
         </p>
         
         <div class="flex flex-col sm:flex-row items-start gap-4 pt-4">
@@ -73,7 +68,7 @@ import TypeEfect from "../header/typeEfect.jsx";
             <div class="flex pl-6">
               <span class="text-orange-300">"Coding"</span><span class="text-white">,</span> 
               <span class="text-orange-300 ml-2">"Web Dev"</span><span class="text-white">,</span>
-              <span class="text-orange-300 ml-2">"Design"</span>
+              <span class="text-orange-300 ml-2">"Security"</span>
             </div>
             <div class="flex">
               <span class="text-slate-600 w-6 select-none">4</span>
@@ -89,6 +84,14 @@ import TypeEfect from "../header/typeEfect.jsx";
 
     </div>
   </div>
+
+  <div id="scroll-indicator" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 transition-all duration-500 z-20">
+    <span class="text-[10px] text-slate-500 font-mono tracking-[0.2em] uppercase opacity-70">Scroll Down For more</span>
+    <div class="w-6 h-10 border-2 border-slate-600 rounded-full flex justify-center p-1">
+      <div class="w-1.5 h-1.5 bg-sky-400 rounded-full animate-bounce"></div>
+    </div>
+  </div>
+
 </header>
 
 <style>
@@ -141,11 +144,27 @@ import TypeEfect from "../header/typeEfect.jsx";
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // 1. Reveal Animation Observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('active');
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal-element').forEach((el) => observer.observe(el));
+
+    // 2. [NEW] Scroll Indicator Logic
+    const scrollIndicator = document.getElementById('scroll-indicator');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        // เมื่อเลื่อนลงเกิน 50px: ซ่อนและเลื่อนลง
+        scrollIndicator.classList.add('opacity-0', 'translate-y-4');
+        scrollIndicator.classList.remove('opacity-100', 'translate-y-0');
+      } else {
+        // เมื่ออยู่ด้านบน: แสดงผลปกติ
+        scrollIndicator.classList.remove('opacity-0', 'translate-y-4');
+        scrollIndicator.classList.add('opacity-100', 'translate-y-0');
+      }
+    });
   });
 </script>

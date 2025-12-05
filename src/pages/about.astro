@@ -9,20 +9,125 @@ import Skills from "../components/about/skills.astro";
 
 <Layout title="About Me - Tawan Pingma" description="Learn more about my skills, experience, and journey as a developer.">
   
-  <main class="bg-[#0b1121] min-h-screen text-slate-300 selection:bg-sky-500/30 overflow-x-hidden">
+  <main class="relative bg-[#0b1121] min-h-screen text-slate-300 selection:bg-sky-500/30 overflow-hidden">
     
-    <Hero titulo="About Me" />
+    {/* --- Background Effects (ตกแต่งพื้นหลัง) --- */}
     
-    <div class="relative z-10">
-      <AboutMe />
-      
-      <Experience />
-      <Features />
-      <Skills />
-    </div>
+    {/* 1. Grid Pattern พื้นหลังตารางจางๆ แบบ Hacker/Dev */}
+    <div class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+    
+    {/* 2. Gradient Blobs (แสงฟุ้งๆ สีม่วง/ฟ้า) */}
+    <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+    <div class="absolute top-0 -right-4 w-72 h-72 bg-sky-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
 
+    {/* 3. Noise Texture (คงของเดิมไว้ เพราะสวยแล้ว) */}
     <div class="fixed inset-0 z-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
+
+    {/* --- Content Area --- */}
+    
+    <div class="relative z-10 container mx-auto px-4 md:px-0 pb-20">
+      
+      {/* Hero Section */}
+      <section class="animate-fade-in-down">
+        <Hero titulo="About Me" />
+      </section>
+      
+      {/* ส่วนเนื้อหาที่เลื่อนแล้วค่อยๆ ปรากฏ (Scroll Reveal) */}
+      <div class="space-y-24 mt-10"> {/* เพิ่มระยะห่างระหว่าง Section */}
+        
+        <section class="reveal-on-scroll">
+          <AboutMe />
+        </section>
+
+        <section class="reveal-on-scroll delay-100">
+          <Experience />
+        </section>
+
+        <section class="reveal-on-scroll delay-200">
+          <Features />
+        </section>
+
+        <section class="reveal-on-scroll delay-300">
+          <Skills />
+        </section>
+
+      </div>
+    </div>
     
   </main>
   
 </Layout>
+
+<style>
+  /* --- Animation CSS --- */
+
+  /* เริ่มต้น: ซ่อน Element และเลื่อนลงไปข้างล่าง */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+  }
+
+  /* เมื่อ Active: แสดงผลและเลื่อนกลับมาที่เดิม */
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Keyframes สำหรับแสง Background ขยับไปมา */
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  /* Animation ง่ายๆ สำหรับ Hero ตอนโหลดหน้าเว็บ */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translate3d(0, -20px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  .animate-fade-in-down {
+    animation: fadeInDown 0.8s ease-out;
+  }
+</style>
+
+<script>
+  // --- Script สำหรับจับการ Scroll ---
+  // ใช้ IntersectionObserver เพื่อดูว่า Element เข้ามาในหน้าจอหรือยัง
+  
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1 // แสดงเมื่อเห็น Element 10%
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target); // หยุดดูเมื่อแสดงผลแล้ว (เพื่อให้เล่นครั้งเดียว)
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal-on-scroll').forEach((section) => {
+    observer.observe(section);
+  });
+</script>
