@@ -1,0 +1,73 @@
+---
+import SocialIcons from "../socialIcons/socialIcons.jsx";
+const currentYear = new Date().getFullYear(); // รับปีปัจจุบันอัตโนมัติ
+---
+
+<footer class="relative bg-[#050505] text-white pt-16 pb-10 overflow-hidden">
+  
+  <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#7836cf] to-transparent opacity-70"></div>
+  <div class="absolute bottom-[-100px] left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-[#69c7c7]/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-10 mb-12">
+      
+      <a href="/" class="group text-center lg:text-left">
+        <h3 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#69c7c7] to-white drop-shadow-[0_0_15px_rgba(105,199,199,0.2)] transition-transform duration-300 group-hover:scale-105">
+          Portfolio
+        </h3>
+        <span class="text-[10px] tracking-[0.3em] text-gray-500 group-hover:text-[#7836cf] transition-colors duration-300">
+          TAWAN PINGMA
+        </span>
+      </a>
+
+      <nav>
+        <ul class="flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-400">
+          {['Home', 'About'].map((item) => (
+            <li>
+              <a 
+                href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
+                class="relative hover:text-[#69c7c7] transition-colors duration-300 py-1 group/link"
+              >
+                {item}
+                <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#69c7c7] transition-all duration-300 group-hover/link:w-full"></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="bg-gray-900/40 p-3 rounded-full border border-white/5 backdrop-blur-sm hover:border-[#7836cf]/40 transition-colors duration-300">
+        <SocialIcons client:visible />
+      </div>
+    </div>
+
+    <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent mb-8"></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      
+      <div class="space-y-1">
+        <p class="text-gray-400 text-sm">
+          &copy; {currentYear} <span class="text-white font-semibold">Tawan Pingma</span>. All rights reserved.
+        </p>
+        <div class="text-xs text-gray-600 flex items-center justify-center md:justify-start gap-1">
+          Developed with <span class="text-red-500 animate-pulse">❤</span> using Astro & Tailwind
+        </div>
+      </div>
+
+      <a 
+        href="mailto:tawunpingma21@gmail.com" 
+        class="group flex items-center gap-3 px-5 py-2 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#69c7c7]/30 transition-all duration-300"
+      >
+        <span class="text-sm text-gray-400 group-hover:text-[#69c7c7] transition-colors">
+          tawunpingma21@gmail.com
+        </span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600 group-hover:text-white transition-colors">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+      </a>
+
+    </div>
+  </div>
+</footer>

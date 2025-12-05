@@ -1,0 +1,151 @@
+---
+import HomeProjectCard from "./homeProyectCard.astro";
+import { proyectos } from "../../../data/projetsAboutData.js";
+---
+
+<section id="projects-section" class="py-20 relative overflow-hidden bg-[#0b1121]">
+  
+  <div class="absolute inset-0 z-0 bg-mask pointer-events-none">
+      <canvas id="tech-bg" class="w-full h-full opacity-[0.15]"></canvas>
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-16 space-y-4 opacity-0 translate-y-8 transition-all duration-700 reveal-on-scroll">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-200 to-slate-400 drop-shadow-sm inline-block tracking-tight">
+        Projects & Activities
+      </h2>
+      <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">
+        ผลงานที่เกิดจากความอยากรู้อยากเห็น และความตั้งใจที่จะพัฒนาตัวเอง
+      </p>
+      <div class="w-24 h-1 bg-gradient-to-r from-transparent via-sky-500 to-transparent mx-auto rounded-full opacity-70"></div>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2 max-w-[1000px] mx-auto perspective-1000">
+      {
+        proyectos.map((p, index) => (
+          <div 
+            class="opacity-0 translate-y-12 transition-all duration-700 ease-out reveal-on-scroll"
+            style={`transition-delay: ${index * 150}ms`} 
+          >
+            <div class="group relative hover:-translate-y-2 transition-transform duration-300">
+                <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-sky-500 rounded-xl blur opacity-0 group-hover:opacity-40 transition duration-500"></div>
+                <div class="relative bg-slate-900/80 backdrop-blur-sm rounded-xl overflow-hidden ring-1 ring-sky-500/10 hover:ring-sky-500/30 transition-all">
+                   <HomeProjectCard {...p} />
+                </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-20 flex justify-center opacity-0 translate-y-8 transition-all duration-700 delay-500 reveal-on-scroll">
+      <a
+        href="/proyectos"
+        class="group relative inline-flex items-center justify-center px-8 py-3 font-semibold text-white transition-all duration-200 bg-[#0b1121] font-pj rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-600 ring-offset-[#0b1121]"
+      >
+        <div
+          class="absolute -inset-1 transition-all duration-1000 rounded-full bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 opacity-60 blur-md group-hover:opacity-100 group-hover:duration-200 animate-tilt"
+        ></div>
+        <div class="absolute -inset-0.5 rounded-full bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600 opacity-30 group-hover:opacity-75 transition-opacity duration-300"></div>
+        
+        <span
+          class="relative flex items-center gap-2 px-6 py-2 transition-all duration-200 bg-[#0b1121] rounded-full group-hover:bg-slate-900"
+        >
+          Other Projects In Github
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400 group-hover:translate-x-1 transition-transform">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // --- Scroll Reveal ---
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('opacity-0', 'translate-y-8', 'translate-y-12');
+        observer.unobserve(entry.target); 
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+    observer.observe(el);
+  });
+
+  // --- Tech Background Animation (ปรับสีแล้ว) ---
+  (function() {
+      const canvas = document.getElementById('tech-bg') as HTMLCanvasElement;
+      if (!canvas) return;
+      
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      let width = canvas.width = canvas.offsetWidth;
+      let height = canvas.height = canvas.offsetHeight;
+
+      const chars = '0101010101ABCDEF'.split('');
+      const fontSize = 14;
+      let columns = width / fontSize;
+      const drops: number[] = [];
+
+      for (let i = 0; i < columns; i++) {
+          drops[i] = Math.random() * -100;
+      }
+
+      function draw() {
+          // ปรับสีพื้นหลัง Fade ให้ตรงกับ bg-[#0b1121] (rgb(11, 17, 33))
+          ctx.fillStyle = 'rgba(11, 17, 33, 0.1)'; 
+          ctx.fillRect(0, 0, width, height);
+
+          // ปรับสีตัวอักษรเป็นสีฟ้า (Sky-400/500)
+          ctx.fillStyle = '#38bdf8'; 
+          ctx.font = `${fontSize}px monospace`;
+
+          for (let i = 0; i < drops.length; i++) {
+              const text = chars[Math.floor(Math.random() * chars.length)];
+              ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+              if (drops[i] * fontSize > height && Math.random() > 0.985) {
+                  drops[i] = 0;
+              }
+              // ความเร็วช้าๆ (Slow)
+              drops[i] += 0.10; 
+          }
+          requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', () => {
+          width = canvas.width = canvas.offsetWidth;
+          height = canvas.height = canvas.offsetHeight;
+          columns = width / fontSize;
+          drops.length = 0;
+          for (let i = 0; i < columns; i++) {
+              drops[i] = Math.random() * -100;
+          }
+      });
+
+      draw();
+  })();
+</script>
+
+<style>
+    .bg-mask {
+        mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    }
+
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+</style>

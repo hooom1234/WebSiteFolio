@@ -1,0 +1,190 @@
+---
+import { HiArrowRight, HiTerminal, HiCode } from "react-icons/hi";
+import { FiCpu, FiShield } from "react-icons/fi";
+import MiFoto from "../../../assets/img/MiFoto.png";
+---
+
+<section class="relative py-24 px-4 overflow-hidden bg-[#0b1121] flex items-center justify-center min-h-[90vh]">
+  
+  <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#0b1121] via-[#0b1121]/80 to-transparent z-20 pointer-events-none"></div>
+
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(56,189,248,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(56,189,248,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] animate-grid-move"></div>
+    <div class="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-blue-900/20 via-sky-900/10 to-transparent blur-3xl"></div>
+  </div>
+
+  <div class="absolute top-20 right-10 text-sky-900/20 font-mono text-sm select-none animate-float-slow hidden lg:block">
+    01001000 01101001
+  </div>
+  <div class="absolute bottom-20 left-10 text-sky-900/20 font-mono text-xs select-none animate-float-delayed hidden lg:block">
+    &lt;System.Root /&gt;
+  </div>
+
+  <div class="container mx-auto max-w-6xl relative z-10">
+    <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+      
+      <div class="w-full md:w-5/12 relative group reveal-element-left">
+        <div class="absolute -inset-4 bg-gradient-to-r from-blue-600/40 to-sky-500/40 rounded-full blur-2xl opacity-40 group-hover:opacity-70 transition duration-1000 animate-pulse-slow"></div>
+        
+        <div class="relative rounded-2xl overflow-hidden border border-sky-500/20 bg-slate-900/80 backdrop-blur-sm shadow-2xl transform transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-blue-500/30">
+          <div class="relative overflow-hidden">
+            <img
+              src={MiFoto.src}
+              alt="Tawan Pingma"
+              class="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-110 filter brightness-90 group-hover:brightness-100"
+            />
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-sky-400/10 to-transparent h-[20%] w-full animate-scan pointer-events-none"></div>
+            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
+          </div>
+
+          <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-[#0b1121] to-transparent border-t border-sky-500/10 flex justify-between items-center backdrop-blur-md">
+             <div class="flex flex-col">
+                <span class="text-[10px] text-slate-400 font-mono">OPERATOR</span>
+                <span class="text-xs text-sky-300 font-bold tracking-widest font-mono">TAWAN.DEV</span>
+             </div>
+             <div class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></div>
+                <span class="text-[10px] text-emerald-400 font-mono">SYSTEM ONLINE</span>
+             </div>
+          </div>
+          
+          <div class="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-sky-500/50 rounded-tr-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute bottom-2 left-2 w-8 h-8 border-b-2 border-l-2 border-blue-500/50 rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+      </div>
+
+
+      <div class="w-full md:w-7/12 reveal-element-right">
+        <div class="relative pl-0 md:pl-8">
+          
+          <div class="flex items-center gap-4 mb-8">
+            <div class="relative p-3 bg-slate-900 rounded-xl border border-sky-500/20 shadow-lg group-icon overflow-hidden">
+               <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-sky-600 opacity-20 group-icon-hover:opacity-40 transition"></div>
+               <HiTerminal size={28} className="text-sky-100 relative z-10" />
+            </div>
+            
+            <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight glitch-wrapper">
+               <span ">About Me</span>
+            </h2>
+          </div>
+
+          <div class="space-y-6">
+            <h3 class="text-xl md:text-2xl text-slate-200 font-medium flex items-center gap-2">
+              <span class="text-blue-400">&gt;</span> I am a
+              <span id="typewriter" class="text-sky-400 font-bold border-r-2 border-sky-400 pr-1 animate-blink"></span>
+            </h3>
+
+            <p class="text-slate-400 leading-relaxed text-base md:text-lg border-l-2 border-sky-500/20 pl-4">
+              My name is <strong class="text-white">Tawan Pingma</strong>, a Grade 12 student with a passion for building secure and scalable software. 
+              My goal is to join the <span class="text-blue-300 font-medium hover:text-blue-200 transition-colors cursor-pointer border-b border-blue-500/30">Computer Science program at Kasetsart University</span>.
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+             <div class="p-4 rounded-xl bg-slate-800/30 border border-white/5 hover:border-sky-500/30 hover:bg-slate-800/50 transition-all duration-300 group/card">
+                <div class="flex items-center gap-3 mb-2">
+                   <FiCpu className="text-sky-400 group-hover/card:scale-110 transition-transform" size={20} />
+                   <h4 class="text-white font-medium">Full-Stack Dev</h4>
+                </div>
+                <p class="text-sm text-slate-400">Expertise in Astro, Tailwind, & Modern JS Frameworks.</p>
+             </div>
+
+             <div class="p-4 rounded-xl bg-slate-800/30 border border-white/5 hover:border-blue-500/30 hover:bg-slate-800/50 transition-all duration-300 group/card">
+                <div class="flex items-center gap-3 mb-2">
+                   <FiShield className="text-blue-400 group-hover/card:scale-110 transition-transform" size={20} />
+                   <h4 class="text-white font-medium">Cybersecurity</h4>
+                </div>
+                <p class="text-sm text-slate-400">CTF Player, Web Security & Vulnerability Research.</p>
+             </div>
+          </div>
+
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a
+              href="/about"
+              class="relative inline-flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all group-btn overflow-hidden shadow-lg shadow-blue-900/20"
+            >
+              <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
+              <span class="font-bold relative z-10 tracking-wide">FULL PROFILE</span>
+              <HiArrowRight className="relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+            
+            <button class="px-6 py-4 rounded-lg border border-white/10 text-slate-300 hover:text-white hover:bg-white/5 transition flex items-center gap-2">
+               <HiCode />
+               <span class="text-sm font-mono">SCROLL DOWN</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Animation CSS */
+  @keyframes gridMove { 0% { background-position: 0 0; } 100% { background-position: 4rem 4rem; } }
+  .animate-grid-move { animation: gridMove 20s linear infinite; }
+  
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes floatDelayed { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+  .animate-float-slow { animation: float 6s ease-in-out infinite; }
+  .animate-float-delayed { animation: floatDelayed 8s ease-in-out infinite; }
+  
+  .animate-pulse-slow { animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+  
+  @keyframes scan { 0% { transform: translateY(-100%); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(200%); opacity: 0; } }
+  .animate-scan { animation: scan 4s linear infinite; }
+  
+  /* Glitch Colors Updated to Blue/Cyan */
+  .glitch-wrapper { position: relative; }
+  .glitch-text { position: relative; z-index: 1; }
+  .glitch-text::before, .glitch-text::after {
+    content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #0b1121; /* Match BG */
+  }
+  .glitch-text::before {
+    left: 2px; text-shadow: -1px 0 #3b82f6; /* Blue-500 */ clip-path: inset(44% 0 61% 0); animation: glitch-anim 0.8s infinite linear alternate-reverse;
+  }
+  .glitch-text::after {
+    left: -2px; text-shadow: -1px 0 #0ea5e9; /* Sky-500 */ clip-path: inset(50% 0 30% 0); animation: glitch-anim 0.8s infinite linear alternate-reverse;
+  }
+  @keyframes glitch-anim {
+    0% { clip-path: inset(80% 0 0 0); } 20% { clip-path: inset(20% 0 60% 0); } 40% { clip-path: inset(50% 0 30% 0); }
+    60% { clip-path: inset(10% 0 80% 0); } 80% { clip-path: inset(30% 0 10% 0); } 100% { clip-path: inset(70% 0 20% 0); }
+  }
+  
+  @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #38bdf8; } } /* Sky-400 */
+  .animate-blink { animation: blink 0.75s step-end infinite; }
+
+  .reveal-element-left { opacity: 0; transform: translateX(-30px); transition: all 1s ease-out; }
+  .reveal-element-right { opacity: 0; transform: translateX(30px); transition: all 1s ease-out; }
+  .reveal-element-left.active, .reveal-element-right.active { opacity: 1; transform: translateX(0); }
+</style>
+
+<script>
+  // Script เดิมทำงานได้ดีอยู่แล้วครับ
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal-element-left, .reveal-element-right').forEach((el) => observer.observe(el));
+
+  const words = ["Software Developer", "Cybersecurity Enthusiast", "Tech Innovator"];
+  let i = 0;
+  let timer;
+  function typeWriter() {
+    const heading = document.getElementById("typewriter");
+    if (!heading) return;
+    const word = words[i];
+    let charIndex = 0;
+    let isDeleting = false;
+    function type() {
+      const current = word.substring(0, charIndex);
+      heading.textContent = current;
+      if (!isDeleting && charIndex < word.length) { charIndex++; timer = setTimeout(type, 100); }
+      else if (isDeleting && charIndex > 0) { charIndex--; timer = setTimeout(type, 50); }
+      else { isDeleting = !isDeleting; if (!isDeleting) i = (i + 1) % words.length; timer = setTimeout(type, isDeleting ? 100 : 2000); }
+    }
+    type();
+  }
+  document.addEventListener('DOMContentLoaded', typeWriter);
+</script>

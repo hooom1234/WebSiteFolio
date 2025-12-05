@@ -1,0 +1,95 @@
+---
+import MiFoto from "../../assets/img/MiFoto.png";
+---
+
+<div class="mx-auto mt-20 flex max-w-6xl flex-col items-center gap-12 px-6 lg:flex-row relative z-10">
+  
+  <div class="relative group shrink-0 animate-float-slow">
+    
+    <div class="absolute -inset-8 bg-gradient-to-tr from-sky-500/40 to-blue-600/40 rounded-full blur-3xl opacity-30 group-hover:opacity-60 transition duration-700"></div>
+    
+    <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-sky-400 via-blue-500 to-transparent opacity-70 blur-sm animate-spin-slow group-hover:opacity-100 transition duration-700"></div>
+
+    <div
+      class="relative h-64 w-64 md:h-80 md:w-80 overflow-hidden rounded-full 
+             /* สร้างขอบและช่องว่างระหว่างขอบกับรูป */
+             ring-4 ring-sky-500/30 ring-offset-[6px] ring-offset-[#0b1121]
+             shadow-2xl shadow-sky-500/20
+             transition-all duration-500 group-hover:scale-[1.02] group-hover:ring-sky-400/60"
+    >
+      <img
+        src={MiFoto.src}
+        alt="Tawan Pingma"
+        class="h-full w-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700 ease-in-out"
+      />
+      
+      <div class="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none rounded-full"></div>
+    </div>
+  </div>
+
+
+  <div class="flex-1 text-center text-slate-300 lg:text-left space-y-6 relative">
+    
+    <div class="hidden lg:block w-20 h-1 bg-gradient-to-r from-sky-500 to-transparent rounded-full mb-6 opacity-50"></div>
+
+    <h2 class="text-3xl md:text-5xl font-bold text-white tracking-tight">
+      My name is <span class="inline-block text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-400 filter drop-shadow-sm hover:scale-105 transition-transform origin-left duration-300">Tawan</span>
+    </h2>
+    
+    <div class="space-y-4 text-base md:text-lg leading-relaxed font-light">
+        <p>
+          I am from <span class="text-sky-400 font-medium">Thailand</span> and currently a Grade 12 student aspiring to become a
+          <span class="text-sky-400 font-medium inline-block border-b border-sky-500/30 pb-0.5">Software Developer</span>, 
+          with a focus on <span class="text-white font-medium">Web Development</span> and 
+          <span class="text-white font-medium">Cybersecurity</span>.
+        </p>
+    
+        <p class="flex flex-col lg:flex-row items-center lg:items-start gap-2 pt-2">
+          <span>I enjoy building things with:</span>
+          <span class="font-mono text-sm text-sky-300 bg-blue-950/50 border border-blue-800/50 px-3 py-1.5 rounded-md shadow-sm">
+             React, Astro, Tailwind CSS, Modern JS
+          </span>
+        </p>
+    
+        <p>
+          My interest in <span class="text-sky-400 font-medium">technology</span> started when I began exploring how software works behind the scenes.
+          Motivated by <span class="text-white font-medium">curiosity</span>, I have been self-studying to build a strong foundation.
+        </p>
+
+        <div class="pt-4">
+            <p class="text-white font-medium mb-2">My Goals:</p>
+            <ul class="flex flex-col gap-2 items-center lg:items-start">
+                <li class="flex items-center gap-2 text-sky-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sky-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+                    Pursue Computer Science at Kasetsart University
+                </li>
+                <li class="flex items-center gap-2 text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sky-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+                    Continuous learning & technological adaptation
+                </li>
+            </ul>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  /* Animation สำหรับการลอยขึ้นลง */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  .animate-float-slow {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Animation สำหรับการหมุนช้าๆ ของวงแหวน */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .animate-spin-slow {
+    animation: spin-slow 12s linear infinite;
+  }
+</style>

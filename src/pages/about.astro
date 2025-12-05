@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/commons/hero/hero.astro";
+import AboutMe from "../components/about/aboutMe.astro";
+import Experience from "../components/about/experience.astro";
+import Features from "../components/about/features.astro";
+import Skills from "../components/about/skills.astro";
+---
+
+<Layout title="About Me - Tawan Pingma" description="Learn more about my skills, experience, and journey as a developer.">
+  
+  <main class="bg-[#0b1121] min-h-screen text-slate-300 selection:bg-sky-500/30 overflow-x-hidden">
+    
+    <Hero titulo="About Me" />
+    
+    <div class="relative z-10">
+      <AboutMe />
+      
+      <Experience />
+      <Features />
+      <Skills />
+    </div>
+
+    <div class="fixed inset-0 z-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
+    
+  </main>
+  
+</Layout>

@@ -1,0 +1,61 @@
+---
+import { FaShieldAlt, FaTerminal } from "react-icons/fa";
+
+// ข้อมูล Services
+const services = [
+	  {
+    icon: FaTerminal,
+    title: "Software Development",
+    desc: "Building robust software solutions with clean code practices, logical problem solving, and efficient algorithms.",
+    color: "from-emerald-400 to-green-300",
+    shadow: "group-hover:shadow-[0_0_20px_rgba(52,211,153,0.4)]"
+  },
+  {
+    icon: FaShieldAlt,
+    title: "Cybersecurity & CTF",
+    desc: "Exploring system vulnerabilities and securing digital assets. Passionate about Capture The Flag (CTF) challenges and ethical hacking.",
+    color: "from-purple-500 to-pink-500",
+    shadow: "group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]"
+  }
+
+];
+---
+
+<section class="site-container mt-20 mx-auto max-w-6xl px-6 relative">
+    
+    <div class="mb-16 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white inline-flex flex-col items-center gap-2">
+            <span class="relative z-10">What I Do</span>
+            <span class="h-1.5 w-24 rounded-full bg-gradient-to-r from-[#7836cf] to-[#0debd8]"></span>
+        </h2>
+        <p class="text-zinc-400 mt-4 max-w-lg mx-auto">
+            Combining creativity with technical skills to build secure and scalable digital experiences.
+        </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-8">
+        {services.map((item) => (
+            <div class="group relative w-full max-w-md bg-zinc-900/40 rounded-2xl p-1 transition-all duration-300 hover:-translate-y-2">
+                
+                <div class={`absolute inset-0 rounded-2xl bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm`}></div>
+                
+                <div class="relative h-full flex flex-col items-center text-center p-8 bg-[#0a0a0a] rounded-xl border border-zinc-800 overflow-hidden">
+                    
+                    <div class={`absolute top-0 left-1/2 -translate-x-1/2 -mt-6 h-32 w-32 rounded-full bg-gradient-to-b ${item.color} opacity-10 blur-2xl group-hover:opacity-20 transition-all`}></div>
+
+                    <div class={`mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-zinc-800/50 text-3xl text-white shadow-inner ring-1 ring-white/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-zinc-800 ${item.shadow} relative z-10`}>
+                        <item.icon />
+                    </div>
+
+                    <h3 class="mb-3 text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400 transition-colors">
+                        {item.title}
+                    </h3>
+                    <p class="text-zinc-400 leading-relaxed text-sm max-w-xs mx-auto">
+                        {item.desc}
+                    </p>
+
+                </div>
+            </div>
+        ))}
+    </div>
+</section>

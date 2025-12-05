@@ -1,0 +1,46 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/commons/navbar/navbar.astro";
+import Footer from "../components/commons/footer/footer.astro";
+
+// 1. Import LoadingScreen เข้ามา
+import LoadingScreen from "../components/LoadingScreen.astro";
+
+const { title = "Tawan Pingma | Portfolio" } = Astro.props; // รับ Title แบบ Dynamic ได้
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth"> <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      /* บังคับใช้ฟอนต์ Inter ทั้งเว็บ */
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+  </head>
+  
+  <body class="bg-gray-950 text-white relative">
+    
+    <LoadingScreen />
+
+    <Navbar />
+    
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+    
+  </body>
+</html>

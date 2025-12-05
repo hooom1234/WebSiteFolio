@@ -1,0 +1,67 @@
+---
+// src/components/LoadingScreen.astro
+---
+
+<div id="loader" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050505] transition-opacity duration-500">
+  
+  <div class="relative flex flex-col items-center gap-4">
+    
+    <div class="relative h-16 w-16">
+      <div class="absolute inset-0 rounded-full border-4 border-t-[#7836cf] border-r-transparent border-b-[#0debd8] border-l-transparent animate-spin"></div>
+      <div class="absolute inset-0 m-auto h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center shadow-[0_0_15px_#7836cf]">
+         <span class="text-xs font-bold text-white">TP</span> </div>
+    </div>
+
+    <div class="text-center">
+      <h2 class="text-xl font-bold text-white tracking-widest uppercase animate-pulse">
+        System Initializing
+      </h2>
+      <p class="text-xs text-[#0debd8] mt-1 font-mono">
+        Loading modules... <span id="progress-text">0%</span>
+      </p>
+    </div>
+
+    <div class="h-1 w-48 rounded-full bg-zinc-800 overflow-hidden relative mt-2">
+      <div id="progress-bar" class="absolute left-0 top-0 h-full w-0 bg-gradient-to-r from-[#7836cf] to-[#0debd8] shadow-[0_0_10px_#0debd8]"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Logic การทำงาน
+  const loader = document.getElementById("loader");
+  const progressBar = document.getElementById("progress-bar");
+  const progressText = document.getElementById("progress-text");
+
+  // ฟังก์ชันจำลองการโหลด (Counter 0-100%)
+  let width = 0;
+  const interval = setInterval(() => {
+    if (width >= 100) {
+      clearInterval(interval);
+      // เมื่อครบ 100% ให้เช็คว่าหน้าเว็บโหลดเสร็จจริงหรือยัง
+      if (document.readyState === "complete") {
+        finishLoading();
+      } else {
+        window.addEventListener("load", finishLoading);
+      }
+    } else {
+      width++;
+      if (progressBar) progressBar.style.width = width + "%";
+      if (progressText) progressText.innerText = width + "%";
+    }
+  }, 15); // ปรับความเร็วตรงนี้ (เลขน้อย = เร็ว)
+
+  function finishLoading() {
+    if (!loader) return;
+    
+    // ค่อยๆ จางหายไป
+    loader.style.opacity = "0";
+    loader.style.pointerEvents = "none"; // ป้องกันการกดโดนตอนจาง
+
+    // ลบ Element ออกจาก DOM หลังจาก Animation จบ (0.5s)
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 500);
+  }
+</script>
